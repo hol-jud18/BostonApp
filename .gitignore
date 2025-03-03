@@ -1,0 +1,15 @@
+venv/
+myvenv/
+
+
+__pycache__/
+*.pyc
+*.pyo
+
+*.sqlite3
+*.db
+
+.env
+
+
+uploads/
