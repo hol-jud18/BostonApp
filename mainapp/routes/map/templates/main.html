@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayah and Jude's Boston Adventures</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    {{header|safe}}
+</head>
+<body>
+    <header>
+        <h1>Mayah and Jude's Boston Adventures</h1>
+    </header>
+
+    <main>
+        <section class="content">
+            {{body|safe}}
+        </section>
+    </main>
+    <div style="text-align: center;">
+        <a href="{{ url_for('pins.make_new_pin', filename='pinsroute.py') }}">
+            <button>Create New Pin</button>
+        </a> 
+    </div>
+   
+    <footer>
+        <p>Created by Mayah and Jude, I Got You Productions</p>
+    </footer>
+
+    <script>
+        {{script|safe}}
+    </script>
+</body>
+</html>

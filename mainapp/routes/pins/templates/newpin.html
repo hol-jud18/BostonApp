@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make New Pin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Create a New Pin</h1>
+    </header>
+    
+    <main>
+        <form action="{{ url_for('pins.submit_pin') }}" method="POST">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="rating1">Mayah's Rating:</label>
+            <input type="range" id="rating1" name="rating1" min="1" max="10" value="5">
+            <span id="rating1Value">5</span>
+
+            <label for="rating2">Jude's Rating:</label>
+            <input type="range" id="rating2" name="rating2" min="1" max="10" value="5">
+            <span id="rating2Value">5</span>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="image">Upload Image (Coming Soon)</label>
+            <input type="file" id="image" name="image" disabled>
+
+            <button type="submit">Make Pin</button>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById("rating1").oninput = function() {
+            document.getElementById("rating1Value").innerText = this.value;
+        };
+        document.getElementById("rating2").oninput = function() {
+            document.getElementById("rating2Value").innerText = this.value;
+        };
+    </script>
+</body>
+</html>
