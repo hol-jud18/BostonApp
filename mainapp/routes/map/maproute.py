@@ -1,5 +1,6 @@
 from flask import Flask, render_template, Blueprint
 import folium
+from mainapp.services import pins_svc
 
 mapapp= Blueprint( 'maproute', __name__, 
             template_folder='templates', 
@@ -9,6 +10,24 @@ mapapp= Blueprint( 'maproute', __name__,
 def home():
     mapObj = folium.Map(location=[42.361145, -71.057083], zoom_start=15, 
                         width=800, height=500)
+    
+    pins_list = pins_svc.pins_list()
+    #print(pins_list)
+
+    if pins_list:
+        for pin in pins_list:
+            popup_content = f"""
+            <b>Title:</b> {pin['title']}<br>
+            <b>Address:</b> {pin['address']}<br>
+            <b>Rating 1:</b> {pin['rating1']}<br>
+            <b>Rating 2:</b> {pin['rating2']}<br>
+            <b>Description:</b> {pin['description']}
+            """
+            folium.Marker(
+                [pin['latitude'], pin['longitude']],
+                popup=folium.Popup(popup_content, max_width=300),
+                tooltip=pin['title'] 
+            ).add_to(mapObj)
     
     mapObj.get_root().render()
 
