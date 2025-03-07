@@ -22,13 +22,14 @@ header {
     color: white;
     padding: 20px;
     font-size: 24px;
+    text-align: center;
     font-weight: bold;
     border-radius: 10px;
 }
 
 /* Main Content */
 .content {
-    background: white;
+    background: #0077cc;
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
@@ -90,3 +91,96 @@ button {
 button:hover {
     background-color: #005fa3;
 }
+
+/* Container layout */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+/* Pins List Sidebar */
+.pin-list {
+    width: 20%;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    flex-shrink: 0; /* Prevents shrinking */
+}
+
+/* Map Content Section */
+.content {
+    flex-grow: 1; /* Takes remaining space */
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 0; /* Remove any auto margins */
+}
+
+/* Adventures Sidebar */
+.adventures {
+    width: 20%;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    flex-shrink: 0; /* Prevents shrinking */
+}
+
+/* Fix the main element */
+main {
+    display: block; /* Change from flex to block */
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* Form page specific styles */
+main.form-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: auto;
+}
+
+.ratings {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.pin-image {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.pin-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pin-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Adjust height as needed */
+}
+
+.pin-details {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+

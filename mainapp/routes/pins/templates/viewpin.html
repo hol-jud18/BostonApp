@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Pin Details</h1>
+    </header>
+
+    <div class="pin-details-container">
+        <div class="pin-details">
+            <main class="content">
+                {% for pin in given_pin %}
+                <h2>{{ pin.title }}</h2>
+                <p><strong>Address:</strong> {{ pin.address }}</p>
+                
+                <div class="ratings">
+                    <p><strong>Mayah's Rating:</strong> {{ pin.rating1 }}/10</p>
+                    <p><strong>Jude's Rating:</strong> {{ pin.rating2 }}/10</p>
+                </div>
+        
+                <p><strong>Description:</strong></p>
+                <p>{{ pin.description }}</p>
+        
+                {% if pin.image %}
+                <div class="pin-image">
+                    <!-- <img src="{{ url_for('static', filename='uploads/' + pin.image) }}" alt="Image of {{ pin.title }}"> -->
+                </div>
+                {% endif %}
+                
+        
+                <a href="{{ url_for('pins.edit_pin', pkid=pin.pkid) }}">
+                    <button>Edit Adventure</button>
+                </a>
+                {% endfor %}
+            </main>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="{{ url_for('maproute.home') }}">
+            <button>Back to Map</button>
+        </a>
+    </div>
+    
+</body>
+</html>

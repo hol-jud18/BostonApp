@@ -30,6 +30,35 @@ def add_new_pin( title, address, latitude, longitude, rating1, rating2, descript
         conn.commit()
     return inserted_id
 
+def edit_pin( pkid, title, address, latitude, longitude, rating1, rating2, description):
+    # SQL query to insert new pin
+    sql_string = """
+        UPDATE Pin SET title = :title, address = :address, latitude = :latitude,
+        longitude = :longitude, rating1 = :rating1, rating2 = :rating2, description = :description
+        WHERE pkid = :pkid 
+    """
+
+    # Bind parameters to the SQL query
+    sql = db.text( sql_string )
+    sql_with_parms = sql.bindparams(
+        pkid=pkid,
+        title=title,
+        address=address,
+        latitude=latitude,
+        longitude=longitude,
+        rating1=rating1,
+        rating2=rating2,
+        description=description
+    )
+
+    # Execute the SQL query and commit the changes
+    inserted_id = -1
+    with db.engine.connect() as conn:
+        rs = conn.execute( sql_with_parms )
+        inserted_id = rs.lastrowid
+        conn.commit()
+    return inserted_id
+
 def pins_list() -> list:
     select_statement = f"""
     SELECT * FROM Pin;
@@ -37,6 +66,25 @@ def pins_list() -> list:
 
     sql = text(select_statement)
     sql_with_parms = sql.bindparams()
+
+    pins_list = []
+    
+
+    with db.engine.connect() as conn:
+        rs = conn.execute(sql_with_parms)
+
+        for row in rs.mappings():
+            pins_list.append(row)
+    return pins_list
+
+def get_pin( pkid ) -> list:
+    select_statement = f"""
+    SELECT * FROM Pin
+    WHERE pkid = :pkid;
+    """
+
+    sql = text(select_statement)
+    sql_with_parms = sql.bindparams(pkid=pkid)
 
     pins_list = []
     

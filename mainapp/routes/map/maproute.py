@@ -9,10 +9,21 @@ mapapp= Blueprint( 'maproute', __name__,
 @mapapp.route('/home', methods=['GET', 'POST'])
 def home():
     mapObj = folium.Map(location=[42.361145, -71.057083], zoom_start=15, 
-                        width=800, height=500)
+                        width=700, height=500)
     
     pins_list = pins_svc.pins_list()
     #print(pins_list)
+
+    def avg_rating(person:str):
+        rating = 0
+        for pin in pins_list:
+            score = 0
+            if pin[person]:
+                score += pin[person]
+        rating = score / pin['pkid']
+        return rating
+    
+    print(avg_rating('rating1'))
 
     if pins_list:
         for pin in pins_list:
@@ -35,4 +46,4 @@ def home():
     body = mapObj.get_root().html.render()
     script = mapObj.get_root().script.render()
 
-    return render_template('main.html', header=header, body=body, script=script)
+    return render_template('main.html', header=header, body=body, script=script, pins_list=pins_list)

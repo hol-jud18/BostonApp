@@ -14,13 +14,31 @@
     </header>
 
     <main>
-        <section class="content">
-            {{body|safe}}
-        </section>
+        <div class="container">
+            <!-- Sidebar for Pins -->
+            <aside class="pin-list">
+                <h2>Pinned Locations</h2>
+                <ul id="pins">
+                    {% for pin in pins_list %}
+                        <li><a href="{{ url_for('pins.view_pin', pkid=pin.pkid) }}">{{ pin.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </aside>
+    
+            <!-- Map Content -->
+            <section class="content">
+                {{ body|safe }}
+            </section>
+
+            <aside class="adventures">
+                <h2>Adventure Highlights</h2>
+            </aside>
+        </div>
     </main>
+    
     <div style="text-align: center;">
-        <a href="{{ url_for('pins.make_new_pin') }}">
-            <button>Create New Pin</button>
+        <a href="{{ url_for('pins.make_new_pin')}}">
+            <button>Create New Adventure</button>
         </a> 
     </div>
    
