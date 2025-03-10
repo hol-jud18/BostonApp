@@ -19,12 +19,13 @@ def submit_pin():
     rating1 = request.form.get('rating1')
     rating2 = request.form.get('rating2')
     description = request.form.get('description')
+    favorited = request.form.get('favorited')
 
     getLoc = loc.geocode(address)
 
-    pins_svc.add_new_pin(title, address, getLoc.latitude, getLoc.longitude, rating1, rating2, description)
+    pins_svc.add_new_pin(title, address, getLoc.latitude, getLoc.longitude, rating1, rating2, description, favorited)
 
-    print(f"Saved Pin - Latitude: {getLoc.latitude}, Longitude: {getLoc.longitude}, Mayah's Rating: {rating1}, Jude's Rating: {rating2}, Description: {description}")
+    #print(f"Saved Pin - Latitude: {getLoc.latitude}, Longitude: {getLoc.longitude}, Mayah's Rating: {rating1}, Jude's Rating: {rating2}, Description: {description}, Favorited?: {favorited}")
     
     return redirect(url_for('maproute.home'))
 
@@ -33,8 +34,10 @@ def view_pin():
     pkid = request.args.get('pkid')
     pin = pins_svc.get_pin(pkid)
 
+    favorite_huh = 'Oh Yea' if pin[-1]['favorited'] == 'true' else 'ew'
+
     print(pin)
-    return render_template('viewpin.html', given_pin=pin)
+    return render_template('viewpin.html', given_pin=pin, favorite_huh=favorite_huh)
 
 @pinapp.route('/edit_pin', methods=['GET', 'POST'])
 def edit_pin():
@@ -53,6 +56,7 @@ def submit_edited_pin():
     rating1 = request.form.get('rating1')
     rating2 = request.form.get('rating2')
     description = request.form.get('description')
+    
 
     getLoc = loc.geocode(address)
 

@@ -32,6 +32,24 @@
 
             <aside class="adventures">
                 <h2>Adventure Highlights</h2>
+                {% if mayah_avg_rating == 0 %}
+                <div class="ratings_avg">
+                    <p><strong>Mayah's Average Rating:</strong> No Adventures</p>
+                    <p><strong>Jude's Average Rating:</strong> No Adventures</p>
+                </div>
+                {% else %}
+                    <div class="ratings_avg">
+                        <p><strong>Mayah's Average Rating:</strong> {{ mayah_avg_rating }}/10.0</p>
+                        <p><strong>Jude's Average Rating:</strong> {{ jude_avg_rating }}/10.0</p>
+                    </div>
+                {% endif %}
+                <h3>Your Favorite Adventures</h3>
+                <ul id="pins">
+                    {% for pin in favorite_pins_list %}
+                        <li><a href="{{ url_for('pins.view_pin', pkid=pin.pkid) }}">{{ pin.title }}</a></li>
+                    {% endfor %}
+                </ul>
+
             </aside>
         </div>
     </main>

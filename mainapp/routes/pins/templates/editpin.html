@@ -8,7 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>Create a New Adventure</h1>
+        {% for pin in given_pin%}
+        <h1>Edit: {{ pin.title }}</h1>
+        {% endfor %}
     </header>
     
     <main class="form-page">
@@ -30,6 +32,10 @@
 
             <label for="description">Description:</label>
             <textarea id="description" name="description" rows="4" required>{{ pin.description }}</textarea>
+
+            <label for="favorited">Is This Place A Favorite</label>
+            <input type="checkbox" id="favorited" name="favorited" value="true">
+            <input type="hidden" name="favorited" value="false">
 
             <label for="image">Upload Image (Coming Soon)</label>
             <input type="file" id="image" name="image" disabled>

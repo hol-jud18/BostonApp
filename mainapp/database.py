@@ -10,8 +10,9 @@ class Pin(db.Model):
     rating1 = db.Column(db.Integer, nullable=False)
     rating2 = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text, nullable=True)
+    favorited = db.Column(db.Boolean, nullable=False)
 
-    def __init__(self, title, address, latitude, longitude, rating1, rating2, description):
+    def __init__(self, title, address, latitude, longitude, rating1, rating2, description, favorited):
         self.title = title
         self.address = address
         self.latitude = latitude
@@ -19,3 +20,4 @@ class Pin(db.Model):
         self.rating1 = rating1
         self.rating2 = rating2
         self.description = description
+        self.favorited = favorited
