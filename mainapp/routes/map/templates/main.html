@@ -18,6 +18,11 @@
             <!-- Sidebar for Pins -->
             <aside class="pin-list">
                 <h2>Pinned Locations</h2>
+                {% for pin in pins_list %}
+                <!-- <form action="{{ url_for('pins.view_pin', pkid=pin.pkid) }}" method="POST">
+                    <button type="submit">{{ pin.title }}</button> -->
+                </form>
+                {% endfor %}
                 <ul id="pins">
                     {% for pin in pins_list %}
                         <li><a href="{{ url_for('pins.view_pin', pkid=pin.pkid) }}">{{ pin.title }}</a></li>
@@ -39,8 +44,8 @@
                 </div>
                 {% else %}
                     <div class="ratings_avg">
-                        <p><strong>Mayah's Average Rating:</strong> {{ mayah_avg_rating }}/10.0</p>
-                        <p><strong>Jude's Average Rating:</strong> {{ jude_avg_rating }}/10.0</p>
+                        <p><strong>Mayah's Average Rating:</strong> {{ mayah_avg_rating }}/10</p>
+                        <p><strong>Jude's Average Rating:</strong> {{ jude_avg_rating }}/10</p>
                     </div>
                 {% endif %}
                 <h3>Your Favorite Adventures</h3>

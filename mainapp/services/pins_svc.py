@@ -31,12 +31,12 @@ def add_new_pin( title, address, latitude, longitude, rating1, rating2, descript
         conn.commit()
     return inserted_id
 
-def edit_pin( pkid, title, address, latitude, longitude, rating1, rating2, description):
+def edit_pin( pkid, title, address, latitude, longitude, rating1, rating2, description, favorited):
     # SQL query to insert new pin
     sql_string = """
         UPDATE Pin SET title = :title, address = :address, latitude = :latitude,
-        longitude = :longitude, rating1 = :rating1, rating2 = :rating2, description = :description
-        WHERE pkid = :pkid 
+        longitude = :longitude, rating1 = :rating1, rating2 = :rating2, description = :description, favorited = :favorited 
+        WHERE pkid = :pkid;
     """
 
     # Bind parameters to the SQL query
@@ -49,7 +49,8 @@ def edit_pin( pkid, title, address, latitude, longitude, rating1, rating2, descr
         longitude=longitude,
         rating1=rating1,
         rating2=rating2,
-        description=description
+        description=description,
+        favorited=favorited
     )
 
     # Execute the SQL query and commit the changes

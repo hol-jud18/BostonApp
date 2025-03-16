@@ -56,11 +56,12 @@ def submit_edited_pin():
     rating1 = request.form.get('rating1')
     rating2 = request.form.get('rating2')
     description = request.form.get('description')
+    favorited = request.form.get('favorited')
     
 
     getLoc = loc.geocode(address)
 
-    pins_svc.edit_pin(pkid, title, address, getLoc.latitude, getLoc.longitude, rating1, rating2, description)
+    pins_svc.edit_pin(pkid, title, address, getLoc.latitude, getLoc.longitude, rating1, rating2, description, favorited)
     
     #return redirect(url_for('pins.viewpin?pkid={{ pkid }}'))
     return redirect(url_for('maproute.home'))
